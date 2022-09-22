@@ -1,0 +1,19 @@
+{
+    "name": "yomi/contact",
+    "description": "this will send email to admin and save the contact information to databae",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "eslamabdallah74",
+            "email": "eslamabdallah301@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yomi\\Contact\\": "src/"
+        }
+    }
+}
