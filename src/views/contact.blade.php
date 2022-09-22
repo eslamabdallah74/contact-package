@@ -244,11 +244,22 @@
                 text-decoration: none;
             }
         }
-        .success-message{
+
+        .success-message {
             color: #1c8a5e;
             text-align: center;
-            font-size: 22px;
+            font-size: 17px;
             margin: 1rem 0;
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+        }
+
+        .alert-danger{
+            color: rgb(179, 43, 43);
+            text-align: center;
+            font-size: 17px;
             font-weight: bold;
         }
     </style>
@@ -274,14 +285,15 @@
                 </h2>
             </div>
             <form method="POST" action="{{ route('storeContact') }}" class="card-form">
+                @csrf
                 <div class="input">
-                    <input type="text" name="name" class="input-field" placeholder="Type your name" required />
+                    <input type="text" name="name" class="input-field" placeholder="Type your name" required/>
                 </div>
                 <div class="input">
-                    <input type="email" name="email" class="input-field" placeholder="Type your email" required />
+                    <input type="email" name="email" class="input-field" placeholder="Type your email"  required/>
                 </div>
                 <div class="input">
-                    <textarea name="message" id="" cols="30" rows="4" placeholder="Type your message here"></textarea>
+                    <textarea name="message" id="" cols="30" rows="4" placeholder="Type your message here" required></textarea>
                 </div>
                 <div class="action">
                     <button type="submit" class="action-button">Send Message</button>
@@ -290,11 +302,20 @@
             {{-- success return message --}}
             <div class="success-message">
                 @if(session()->has('succsess'))
-                <div class="m-4 alert alert-success ">
+                <div class="m-4 alert alert-success">
                     <p>{{ session('succsess') }}</p>
                 </div>
                 @endif
             </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         </div>
     </div>
 </body>

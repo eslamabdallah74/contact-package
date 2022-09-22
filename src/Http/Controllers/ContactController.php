@@ -24,6 +24,14 @@ class ContactController extends Controller
         $name    = $request->name;
         $url     = Config::get('contact.url');
         $emailTo = Config::get('contact.send_email_to');
+        // Validation
+        $validated = $request->validate([
+            'name'      => 'required|min:2|max:50',
+            'email'     => 'required|email',
+            'message'   => 'required|min:2|max:400'
+        ]);
+
+
         // Send Message to mail
         Mail::to($emailTo)
             ->send(new ContactMail($message, $name,$url));
@@ -31,6 +39,8 @@ class ContactController extends Controller
         $contact = Contact::create($request->all());
         // Return succsess message
         session()->flash('succsess', __("Your message has been sent successfully"));
-        return view('contact::contact');
+        return view('contact::contact',compact(
+            $errors = []
+        ));
     }
 }

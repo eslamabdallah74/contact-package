@@ -15,10 +15,11 @@ class ContactServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/config/contact.php','contact'
         );
+
     }
 
     public function register()
     {
-        //
+
     }
 }
