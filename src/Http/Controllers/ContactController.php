@@ -30,8 +30,6 @@ class ContactController extends Controller
             'email'     => 'required|email',
             'message'   => 'required|min:2|max:400'
         ]);
-
-
         // Send Message to mail
         Mail::to($emailTo)
             ->send(new ContactMail($message, $name,$url));
@@ -39,8 +37,6 @@ class ContactController extends Controller
         $contact = Contact::create($request->all());
         // Return succsess message
         session()->flash('succsess', __("Your message has been sent successfully"));
-        return view('contact::contact',compact(
-            $errors = []
-        ));
+        return view('contact::contact');
     }
 }

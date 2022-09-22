@@ -15,5 +15,12 @@
         "psr-4": {
             "Yomi\\Contact\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yomi\\Contact\\ContactServiceProvider"
+            ]
+        }
     }
 }
